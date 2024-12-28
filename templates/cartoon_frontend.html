@@ -263,7 +263,7 @@
             formData.append('file', fileInput.files[0]);
         
             // Send the image to the Flask backend
-            fetch('http://127.0.0.1:5000/process', {
+            fetch('/process', {
                 method: 'POST',
                 body: formData
             })
