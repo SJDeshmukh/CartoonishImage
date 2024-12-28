@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Cartoonizer</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            height: 100%;
+            background: radial-gradient(circle, #ff9a9e, #fad0c4, #ff6b6b);
+            overflow-x: hidden;
+        }
+        nav {
+            background: #ff6b6b;
+            width: 100%;
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.7);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        nav ul li a:hover {
+            color: #fad0c4;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            width: 450px;
+            margin-top: 120px;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #ff6b6b;
+            text-shadow: 4px 4px 0 #f9a3a3, 8px 8px 0 #ffb2b2;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        footer a {
+            text-decoration: none;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        footer a:hover {
+            color: #fad0c4;
+        }
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling effect */
+        }
+        /* Ensure the body takes full height for scrolling */
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+      
+            <li><a href="http://127.0.0.1:5000/">Home</a></li>
+            <li><a href="http://127.0.0.1:5000/about">About</a></li>
+            <li><a href="http://127.0.0.1:5000/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>About Us</h1>
+        <p>At OpenVision, I combine creativity and technology to transform ordinary images into unique, cartoonized artworks. Our image processing pipeline utilizes advanced techniques to bring out the artistic side of every photo. Here’s how it works:</p>
+        <ul>
+            <li><strong>Image Upload & Preprocessing:</strong> Users can upload their images, which are processed through a series of steps to ensure high-quality results.</li>
+            <li><strong>Randomized Parameters:</strong> To keep the output fresh and dynamic, we randomly adjust the color depth and filter strength for each image.</li>
+            <li><strong>Color Quantization:</strong> By reducing the image’s color palette through K-means clustering, we give it a simplified, cartoon-like feel while retaining the essence of the original photo.</li>
+            <li><strong>Edge Detection:</strong> We enhance the image’s contours using adaptive thresholding, which helps outline the key features, giving it a hand-drawn effect.</li>
+            <li><strong>Smoothing with Bilateral Filters:</strong> Our unique bilateral filtering technique smooths the image while preserving edges, creating a soft yet defined look.</li>
+            <li><strong>Cartoon Effect:</strong> By blending the smoothed image with the edge map, we create a visually striking cartoon effect that’s both colorful and bold.</li>
+            <li><strong>Seamless Experience:</strong> Once the transformation is complete, we provide the final cartoonized image in a shareable format.</li>
+        </ul>
+        <p>Simply upload your image and watch the magic happen!</p>
+    </div>
+    <footer>
+        <a href="/contact">Contact Us</a>
+    </footer>
+</body>
+</html>

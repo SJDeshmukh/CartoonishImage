@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoonizer</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: radial-gradient(circle, #ff9a9e, #fad0c4, #ff6b6b);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            height: auto; /* Allow height to grow */
+        }
+        
+        .container {
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            width: 450px;
+            animation: bounceIn 1.5s ease-out;
+            position: relative;
+            margin-top: 120px; /* Space below navbar */
+            margin-bottom: 20px; /* Extra bottom spacing */
+        }
+        
+        nav {
+            background: #ff6b6b;
+            width: 100%;
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.7);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #fad0c4;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            width: 450px;
+            animation: bounceIn 1.5s ease-out;
+            position: relative;
+            margin-top: 120px; /* Space below navbar */
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff6b6b;
+            text-shadow: 4px 4px 0 #f9a3a3, 8px 8px 0 #ffb2b2;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .upload-area {
+            border: 3px dashed #ff6b6b;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            cursor: pointer;
+            transition: 0.4s ease-in-out;
+            position: relative;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            overflow: hidden;
+        }
+
+        .upload-area:hover {
+            background: #ff6b6b;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.7);
+            transition: 0.4s ease-in-out;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #e55050;
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.8);
+        }
+
+        .output img {
+            max-width: 100%;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 5px solid #ff6b6b;
+            transform: scale(1.05);
+            transition: transform 0.5s ease;
+        }
+
+        .output img:hover {
+            transform: scale(1.1);
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff6b6b;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling effect */
+        }
+        nav {
+            background: #ff6b6b;
+            width: 100%;
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.7);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 20px; /* Space for the logo */
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-grow: 1;
+        }
+        
+        nav ul li {
+            margin: 0 20px;
+        }
+        
+        #logo {
+            height: 40px; /* Adjust the size of the logo */
+            width: auto;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        nav ul li a:hover {
+            color: #fad0c4;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="http://127.0.0.1:5000/">Home</a></li>
+            <li><a href="http://127.0.0.1:5000/about">About</a></li> <!-- Redirect to Flask About route -->
+            <li><a href="http://127.0.0.1:5000/contact">Contact</a></li> <!-- Redirect to Flask Contact route -->    
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Cartoonizer</h1>
+        <div class="upload-area" onclick="document.getElementById('file-input').click()">
+            Click to Upload an Image
+            <input type="file" id="file-input" accept="image/*" onchange="previewImage(event)">
+        </div>
+        <button class="btn" onclick="processImage()">Cartoonize!</button>
+        <div class="output" id="output">
+            <!-- Image preview and processed image will appear here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to display the image preview before processing
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const outputDiv = document.getElementById('output');
+        
+            if (file) {
+                const imgURL = URL.createObjectURL(file);
+                outputDiv.innerHTML = `<img src="${imgURL}" alt="Selected Image" id="preview-image">`;
+            }
+        }
+    
+        // Function to send the image to the backend for processing
+        function processImage() {
+            const fileInput = document.getElementById('file-input');
+            const outputDiv = document.getElementById('output');
+        
+            if (!fileInput.files[0]) {
+                alert("Please upload an image first.");
+                return;
+            }
+    
+            // Clear the output area before showing the new image
+            outputDiv.innerHTML = '';
+    
+            // Display the original image and loader while processing
+            const imgURL = URL.createObjectURL(fileInput.files[0]);
+            outputDiv.innerHTML = `<img src="${imgURL}" alt="Selected Image" id="preview-image"> <div class="loader"></div>`;
+        
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+        
+            // Send the image to the Flask backend
+            fetch('http://127.0.0.1:5000/process', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json()) // Expect JSON response
+            .then(data => {
+                if (data.image) {
+                    const imgURL = `data:image/jpeg;base64,${data.image}`; // Create base64 URL
+                    
+                    // Remove the loader and display the processed image
+                    outputDiv.innerHTML = `<img src="${imgURL}" alt="Cartoonized Image" id="preview-image">`;
+    
+                    // Create a download button
+                    const downloadButton = document.createElement('button');
+                    downloadButton.classList.add('btn');
+                    downloadButton.innerText = 'Download Image';
+                    downloadButton.onclick = function() {
+                        const link = document.createElement('a');
+                        link.href = imgURL;
+                        link.download = 'cartoonized_image.jpg'; // Set the filename
+                        link.click();
+                    };
+    
+                    outputDiv.appendChild(downloadButton);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                outputDiv.innerHTML = 'Error processing the image';
+            });
+        }
+    </script>
+    
+</body>
+</html>

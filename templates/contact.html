@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Cartoonizer</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            height: 100vh;
+            background: radial-gradient(circle, #ff9a9e, #fad0c4, #ff6b6b);
+            overflow: hidden;
+        }
+        nav {
+            background: #ff6b6b;
+            width: 100%;
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.7);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+        nav ul li a:hover {
+            color: #fad0c4;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            width: 450px;
+            margin-top: 120px;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #ff6b6b;
+            text-shadow: 4px 4px 0 #f9a3a3, 8px 8px 0 #ffb2b2;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        a {
+            text-decoration: none;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #fad0c4;
+        }
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling effect */
+        }
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+ 
+            <li><a href="http://127.0.0.1:5000/">Home</a></li>
+            <li><a href="http://127.0.0.1:5000/about">About</a></li>
+            <li><a href="http://127.0.0.1:5000/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Email: <a href="mailto:support@cartoonizerapp.com">support@cartoonizerapp.com</a></p>
+        <p>Phone: +1234567890</p>
+        <p>Address: 123 Cartoon Lane, Imagination City, Dreamland</p>
+        <footer>
+            <a href="/about">About Us</a>
+        </footer>
+    </div>
+</body>
+</html>
