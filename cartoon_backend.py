@@ -8,7 +8,7 @@ import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
-
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 @app.route('/process', methods=['POST'])
 def process_image():
     print("Got Request")
@@ -23,7 +23,13 @@ def process_image():
     img = cv2.imread(filename)
     if img is None:
         return jsonify({"error": "Invalid image file"}), 400
-
+    max_width = 500
+    height, width = img.shape[:2]
+    if width > max_width:
+        scaling_factor = max_width / width
+        new_size = (max_width, int(height * scaling_factor))
+        img = cv2.resize(img, new_size, interpolation=cv2.INTER_AREA)
+        print(f"Image resized to {new_size}")
     # Randomize `total_color`, `sigmaColor`, and `sigmaSpace`
     total_color = random.randint(25, 50)  # Randomize between 25 and 70
     sigma_value = random.randint(101, 200)  # Randomize between 100 and 200

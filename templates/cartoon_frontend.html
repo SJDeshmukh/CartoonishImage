@@ -212,9 +212,10 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li> <!-- Redirect to Flask About route -->
-            <li><a href="/contact">Contact</a></li> <!-- Redirect to Flask Contact route -->    
+
+            <li><a href="http://127.0.0.1:5000/home">Home</a></li>
+            <li><a href="http://127.0.0.1:5000/about">About</a></li> <!-- Redirect to Flask About route -->
+            <li><a href="http://127.0.0.1:5000/contact">Contact</a></li> <!-- Redirect to Flask Contact route -->    
         </ul>
     </nav>
 
@@ -263,7 +264,7 @@
             formData.append('file', fileInput.files[0]);
         
             // Send the image to the Flask backend
-            fetch('/process', {
+            fetch('http://127.0.0.1:5000/process', {
                 method: 'POST',
                 body: formData
             })
