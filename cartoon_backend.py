@@ -23,7 +23,7 @@ def process_image():
     img = cv2.imread(filename)
     if img is None:
         return jsonify({"error": "Invalid image file"}), 400
-    max_width = 500
+    max_width = 300
     height, width = img.shape[:2]
     if width > max_width:
         scaling_factor = max_width / width
