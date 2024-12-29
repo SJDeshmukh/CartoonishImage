@@ -223,7 +223,7 @@ input[type="email"]:focus {
         formData.append('user_email', userEmail);
     
         // Send the image and user data to the Flask backend
-        fetch('http://127.0.0.1:5000/process', {
+        fetch('/process', {
             method: 'POST',
             body: formData
         })
