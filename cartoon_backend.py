@@ -49,13 +49,9 @@ def process_image():
     if img is None:
         os.remove(filename)
         return jsonify({"error": "Invalid image file"}), 400
-<<<<<<< HEAD
 
     # Resize the image if it's too large
     max_width = 400
-=======
-    max_width = 300
->>>>>>> 7b7441b673fea2680e4c9b372b799c883f3c8048
     height, width = img.shape[:2]
     if width > max_width:
         scaling_factor = max_width / width
