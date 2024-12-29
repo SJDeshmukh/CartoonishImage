@@ -28,6 +28,8 @@ def get_db_connection():
 # Cartoonize image and store in database
 @app.route('/process', methods=['POST'])
 def process_image():
+    print(f"Received user_name: {request.form.get('user_name')}")
+    print(f"Received user_email: {request.form.get('user_email')}")
     # Validate file upload
     if 'file' not in request.files or request.files['file'].filename == '':
         return jsonify({"error": "No file uploaded"}), 400

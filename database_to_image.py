@@ -53,4 +53,4 @@ def extract_and_convert_image(image_id):
         conn.close()
 
 # Call the function with a specific ID (e.g., ID = 5)
-extract_and_convert_image(7)
+extract_and_convert_image(11)
