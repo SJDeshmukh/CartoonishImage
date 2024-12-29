@@ -168,9 +168,9 @@ input[type="email"]:focus {
 <body>
     <nav>
         <ul>
-            <li><a href="http://127.0.0.1:5000/">Home</a></li>
-            <li><a href="http://127.0.0.1:5000/about">About</a></li>
-            <li><a href="http://127.0.0.1:5000/contact">Contact</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
         </ul>
     </nav>
 <div class="container">
@@ -200,58 +200,65 @@ input[type="email"]:focus {
     }
 
     function processImage() {
-        const fileInput = document.getElementById('file-input');
-        const userName = document.getElementById('user-name').value;
-        const userEmail = document.getElementById('user-email').value;
-        const outputDiv = document.getElementById('output');
-    
-        if (!fileInput.files[0]) {
-            alert("Please upload an image first.");
-            return;
-        }
-    
-        // Clear the output area before showing the new image
-        outputDiv.innerHTML = '';
-    
-        // Display the original image and loader while processing
-        const imgURL = URL.createObjectURL(fileInput.files[0]);
-        outputDiv.innerHTML = `<img src="${imgURL}" alt="Selected Image" id="preview-image"> <div class="loader"></div>` ;
-    
-        const formData = new FormData();
-        formData.append('file', fileInput.files[0]);
-        formData.append('user_name', userName);
-        formData.append('user_email', userEmail);
-    
-        // Send the image and user data to the Flask backend
-        fetch('http://127.0.0.1:5000/process', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json()) // Expect JSON response
-        .then(data => {
-            if (data.image) {
-                const imgURL = `data:image/jpeg;base64,${data.image}`; // Create base64 URL
-                outputDiv.innerHTML = `<img src="${imgURL}" alt="Cartoonized Image" id="preview-image">` ;
-    
-                // Create a download button
-                const downloadButton = document.createElement('button');
-                downloadButton.classList.add('btn');
-                downloadButton.innerText = 'Download Image';
-                downloadButton.onclick = function() {
-                    const link = document.createElement('a');
-                    link.href = imgURL;
-                    link.download = 'cartoonized_image.jpg'; // Set the filename
-                    link.click();
-                };
-    
-                outputDiv.appendChild(downloadButton);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            outputDiv.innerHTML = 'Error processing the image';
-        });
+    const fileInput = document.getElementById('file-input');
+    const userName = document.getElementById('user-name').value;
+    const userEmail = document.getElementById('user-email').value;
+    const outputDiv = document.getElementById('output');
+
+    // Check if the user has entered their name
+    if (!userName.trim()) {
+        alert("Please enter your name before uploading an image.");
+        return;
     }
+
+    if (!fileInput.files[0]) {
+        alert("Please upload an image first.");
+        return;
+    }
+
+    // Clear the output area before showing the new image
+    outputDiv.innerHTML = '';
+
+    // Display the original image and loader while processing
+    const imgURL = URL.createObjectURL(fileInput.files[0]);
+    outputDiv.innerHTML = `<img src="${imgURL}" alt="Selected Image" id="preview-image"> <div class="loader"></div>` ;
+
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+    formData.append('user_name', userName);
+    formData.append('user_email', userEmail);
+
+    // Send the image and user data to the Flask backend
+    fetch('/process', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) // Expect JSON response
+    .then(data => {
+        if (data.image) {
+            const imgURL = `data:image/jpeg;base64,${data.image}`; // Create base64 URL
+            outputDiv.innerHTML = `<img src="${imgURL}" alt="Cartoonized Image" id="preview-image">` ;
+
+            // Create a download button
+            const downloadButton = document.createElement('button');
+            downloadButton.classList.add('btn');
+            downloadButton.innerText = 'Download Image';
+            downloadButton.onclick = function() {
+                const link = document.createElement('a');
+                link.href = imgURL;
+                link.download = 'cartoonized_image.jpg'; // Set the filename
+                link.click();
+            };
+
+            outputDiv.appendChild(downloadButton);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        outputDiv.innerHTML = 'Error processing the image';
+    });
+}
+
 </script>
 
 </body>
